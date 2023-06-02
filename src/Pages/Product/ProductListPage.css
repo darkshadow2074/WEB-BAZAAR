@@ -1,0 +1,212 @@
+:root {
+  --nav-background: #fff;
+  --body-background-color: #f7f7f7;
+  --nav-boxShadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --primary-color: #ff754e;
+  --btn-primary-hover-color: #ff4916;
+  --light-black-color: #7e818c;
+  --primaryContrast-color: #167aff;
+  --primaryLight-color: #ffd4c8;
+  --rating-background-color: hsla(0, 0%, 100%, 0.8);
+  --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
+  --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
+  --card-boxShadow: 0 2px 16px 4px rgba(40, 44, 63, 0.07);
+  --primary-font: "Outfit";
+}
+.product-list-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.product-top-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 280px;
+  margin: 0px 20px 20px 270px;
+  position: relative;
+  top: -12px;
+}
+.product-top-bar h2 {
+  font-size: 1.3rem;
+  font-family: var(--primary-font);
+  color: var(--primary-color);
+}
+.product-top-bar select {
+  border: 0.5px solid var(--primary-color);
+  border-radius: 20px;
+  padding: 6px;
+}
+
+.product-top-bar option {
+  font-weight: bold;
+}
+
+.product-top-bar .sort-by-price {
+  border: 1px solid var(--primary-color);
+  padding: 9px 14px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 2px;
+  color: black;
+  font-size: 14px;
+  width: 255px;
+  font-family: var(--primary-font);
+}
+.selected-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--primary-color);
+}
+.selected-list b {
+  margin: 0 6px;
+}
+.selected-list svg {
+  color: var(--light-black-color);
+}
+
+.product-top-bar .sort-by-price .sort-list {
+  background-color: var(--body-background-color);
+  box-shadow: var(--card-boxShadow);
+  width: 255px;
+  position: absolute;
+  top: 37px;
+  left: -0.8px;
+  padding: 16px 0;
+  z-index: 10;
+
+  display: none;
+  transition: display 0.5s;
+}
+
+.product-top-bar .sort-by-price .sort-list li {
+  list-style: none;
+  text-align: left;
+  transition: background 0.5s;
+  color: #282c3f;
+}
+.sort-by-price:hover {
+  border-bottom: none;
+}
+.sort-by-price:hover .sort-list {
+  display: block;
+  border-top: none;
+}
+.product-top-bar .sort-by-price .sort-list li:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.product-top-bar .sort-by-price .sort-list li label {
+  display: block;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+.product-top-bar .sort-by-price .sort-list li:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.product-top-bar .sort-by-price .sort-list li label input {
+  visibility: hidden;
+  display: none;
+}
+
+@media screen and (min-width: 280px) {
+  .product-top-bar {
+    margin: 20px 0;
+  }
+  .product-top-bar h2 {
+    font-size: 12px;
+    align-self: center;
+  }
+  .product-list-container {
+    margin-top: 20px;
+  }
+  .product-top-bar .sort-by-price {
+    width: 74%;
+    font-size: 10px;
+    padding: 8px;
+  }
+  .product-top-bar .sort-by-price .sort-list {
+    width: 143.4px;
+    left: -0.8px;
+    top: 29px;
+  }
+  .product-top-bar .sort-by-price .sort-list li label {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 375px) {
+  .product-top-bar .sort-by-price .sort-list {
+    width: 183.4px;
+    left: -0.8px;
+    top: 29px;
+  }
+}
+@media screen and (min-width: 425px) {
+  .product-top-bar {
+    margin: 20px 0;
+  }
+  .product-top-bar h2 {
+    font-size: 12px;
+    align-self: center;
+  }
+  .product-top-bar .sort-by-price {
+    width: 38%;
+    font-size: 10px;
+    padding: 8px;
+  }
+  .product-top-bar .sort-by-price .selected-list {
+    justify-content: center;
+  }
+  .product-top-bar .sort-by-price .sort-list {
+    width: 150.2px;
+    left: -0.8px;
+    top: 28px;
+  }
+  .product-top-bar .sort-by-price .sort-list li label {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .product-top-bar h2 {
+    font-size: 1.2rem;
+    align-self: center;
+  }
+  .product-top-bar .sort-by-price {
+    width: 28%;
+  }
+  .product-top-bar .sort-by-price .sort-list {
+    width: 206.2px;
+    left: -0.8px;
+    top: 28px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .product-top-bar {
+    margin: 0px 20px 20px 270px;
+  }
+}
+@media screen and (min-width: 1220px) {
+  .product-top-bar .sort-by-price {
+    width: 20%;
+  }
+  .product-top-bar .sort-by-price .sort-list {
+    width: 293.4px;
+    left: -0.8px;
+    top: 28px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .product-top-bar .sort-by-price {
+    width: 20%;
+  }
+  .product-top-bar .sort-by-price .sort-list {
+    width: 236.4px;
+    left: -0.8px;
+    top: 28px;
+  }
+}

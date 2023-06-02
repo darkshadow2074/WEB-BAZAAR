@@ -1,0 +1,38 @@
+:root {
+  --nav-background: #fff;
+  --box-color: #f5f5f6;
+  --border-color: #edebef;
+  --nav-boxShadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --primary-color: #ff754e;
+  --btn-cancel-color: #cf142b;
+  --light-black-color: #7e818c;
+  --primaryLight-color: #ffd4c8;
+  --rating-background-color: hsla(0, 0%, 100%, 0.8);
+  --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
+  --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
+  --btn-section-boxShadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.15);
+  --primary-font: "Outfit";
+}
+.order-history-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  font-family: var(--primary-font);
+}
+@media screen and (min-width: 280px) {
+  .order-header h1 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+}
+@media screen and (min-width: 768px) {
+  .order-header h1 {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .order-header h1 {
+    font-size: 2.8rem;
+  }
+}

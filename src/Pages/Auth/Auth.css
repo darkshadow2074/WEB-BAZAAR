@@ -1,0 +1,132 @@
+:root {
+  --nav-background: #fff;
+  --body-background-color: #f7f7f7;
+  --nav-boxShadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --primary-color: #ff754e;
+  --btn-primary-hover-color: #ff4916;
+  --light-black-color: #7e818c;
+  --primaryContrast-color: #167aff;
+  --primaryLight-color: #ffd4c8;
+  --rating-background-color: hsla(0, 0%, 100%, 0.8);
+  --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
+  --btn-boxShadow: 0 10px 20px 0 rgba(207, 176, 168, 0.57);
+  --btn-sectionBoxShadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  --primary-font: "Outfit";
+}
+
+.signup-container,
+.login-container {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.signup-card,
+.login-card {
+  box-shadow: var(--btn-sectionBoxShadow);
+}
+.signup-card .promo-image-container,
+.login-card .promo-image-container {
+  width: 100%;
+}
+.signup-card .promo-image-container img,
+.login-card .promo-image-container img {
+  max-width: 100%;
+}
+
+.signup-form h1,
+.login-form h1 {
+  font-size: 1.6rem;
+  font-family: var(--primary-font);
+  color: var(--primary-color);
+  margin-top: 0.6rem;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem;
+}
+
+.input-container label {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 90%;
+  gap: 6px;
+  font-family: var(--primary-font);
+  position: relative;
+}
+
+.input-container label p {
+  text-align: left;
+}
+.input-container label input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 2px;
+  outline: none;
+  border: 1px solid #d4d5d9;
+  background-color: transparent;
+}
+.input-container label .btn-show-icon {
+  position: absolute;
+  right: 16px;
+  bottom: 23.5px;
+  color: gray;
+  cursor: pointer;
+}
+.input-container label input:focus {
+  border: 1px solid var(--primary-color); /* oranges! yey */
+}
+.signup-card .signup,
+.login-card .login {
+  width: 84%;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  text-align: center;
+  padding: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  outline: none;
+  border: none;
+  margin: 8px;
+  transition: background 0.5s;
+  box-shadow: var(--btn-boxShadow);
+  border-radius: 5px;
+}
+.signup-card .signup:hover,
+.login-card .login:hover {
+  background-color: var(--btn-primary-hover-color);
+}
+.signup-section,
+.login-section {
+  padding: 0.8rem;
+  font-family: var(--primary-font);
+  font-size: 1rem;
+}
+.signup-section a,
+.login-section a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.error-section {
+  padding: 2px;
+  color: var(--primary-color);
+  text-align: left;
+}
+@media screen and (min-width: 768px) {
+  .signup-container,
+  .login-container {
+    width: 50%;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .signup-container,
+  .login-container {
+    width: 30%;
+  }
+}

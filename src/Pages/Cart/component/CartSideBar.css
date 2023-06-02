@@ -1,0 +1,184 @@
+:root {
+  --nav-background: #fff;
+  --body-background-color: #f7f7f7;
+  --nav-boxShadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --primary-color: #ff754e;
+  --btn-primary-hover-color: #ff4916;
+  --border-color: #edebef;
+  --light-black-color: #7e818c;
+  --cartPage-background-color: #f4f4f5;
+  --primaryLight-color: #ffd4c8;
+  --rating-background-color: hsla(0, 0%, 100%, 0.8);
+  --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
+  --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
+  --btn-section-boxShadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.15);
+  --primary-font: "Outfit";
+  --cart-box-border-color: #eaeaec;
+}
+.cart-page-sidebar {
+  width: 100%;
+}
+.cart-page-sidebar h2 {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--primary-font);
+  text-align: left;
+  padding: 4px 8px 8px 8px;
+}
+.cart-page-sidebar .apply-coupons {
+  display: flex;
+  padding: 16px 12px 16px 16px;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+}
+.cart-page-sidebar .apply-coupons .coupon-name {
+  margin-left: 8px;
+}
+.cart-page-sidebar .apply-coupons .btn-block,
+.cart-page-sidebar .apply-coupons .selected-coupon {
+  padding: 4px 16px;
+  font-size: 12px;
+  border: 1px solid var(--primary-color);
+  color: var(--btn-primary-hover-color);
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+.cart-page-sidebar .apply-coupons .selected-coupon {
+  background-color: var(--primary-color);
+  color: white;
+}
+.cart-page-sidebar .apply-coupons .btn-block:hover {
+  background-color: var(--light-primary-color);
+}
+.cart-page-sidebar .cart-total-price-section {
+  margin-top: 16px;
+  padding: 8px;
+  background-color: white;
+  text-align: left;
+}
+.cart-page-sidebar .cart-total-price-section p {
+  padding: 4px 4px 8px 4px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 600;
+}
+.total-price-section {
+  padding: 8px;
+}
+.total-price-section {
+  display: flex;
+  flex-direction: column;
+}
+.total-price-section .total-price {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+}
+.total-price-section .total-price p,
+.total-price-section .total-amount p {
+  border-bottom: none;
+}
+.total-price-section .total-price div {
+  display: flex;
+  justify-content: space-between;
+}
+.total-price-section .total-amount {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+}
+.authenticity-section {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 72px;
+}
+.authenticity-section img {
+  max-width: 100%;
+}
+
+.place-order-btn-section {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  box-shadow: var(--btn-section-boxShadow);
+  z-index: 9;
+  width: 100%;
+}
+.place-order-btn-section .btn-section-header {
+  text-align: center;
+  padding: 4px 0px;
+  font-weight: 600;
+  color: black;
+  font-size: 12px;
+  background-color: var(--primaryLight-color);
+}
+
+.place-order-btn-section .btn-container {
+  padding: 8px;
+}
+.place-order-btn-section .btn-container button {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+  transition: background 0, 5s;
+  height: 50px;
+  cursor: pointer;
+}
+.place-order-btn-section .btn-container button:hover {
+  background-color: var(--btn-primary-hover-color);
+}
+
+@media screen and (min-width: 1024px) {
+  .cart-page-container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+  .cart-total-price-section {
+    border: 1px solid var(--cart-box-border-color);
+  }
+  .cart-page-sidebar .apply-coupons {
+    border: 1px solid var(--cart-box-border-color);
+  }
+  .cart-page-sidebar h2 {
+    background-color: white;
+    margin-top: 8px;
+    padding: 16px 12px 8px 16px;
+  }
+  .authenticity-section {
+    margin-bottom: 12px;
+  }
+  .place-order-btn-section {
+    position: relative;
+    background: #fff;
+    box-shadow: none;
+    width: 100%;
+    border: none;
+  }
+  .place-order-btn-section .btn-container {
+    padding: 0px;
+  }
+  .btn-section-header {
+    display: none;
+  }
+  .place-order-btn-section .btn-container button {
+    box-shadow: var(--btn-boxShadow);
+  }
+  .cart-page-sidebar .apply-coupons .coupon-name {
+    margin-left: 0px;
+  }
+  .cart-page-sidebar .cart-total-price-section {
+    margin-top: 22px;
+  }
+}

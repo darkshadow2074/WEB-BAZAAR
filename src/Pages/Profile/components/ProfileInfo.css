@@ -1,0 +1,76 @@
+:root {
+  --nav-background: #fff;
+  --box-color: #f5f5f6;
+  --border-color: #edebef;
+  --nav-boxShadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --primary-color: #ff754e;
+  --btn-cancel-color: #cf142b;
+  --light-black-color: #7e818c;
+  --primaryLight-color: #ffd4c8;
+  --rating-background-color: hsla(0, 0%, 100%, 0.8);
+  --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
+  --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
+  --btn-section-boxShadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.15);
+  --primary-font: "Outfit";
+}
+.profile-info-container .blank-box {
+  background-color: var(--box-color);
+  height: 160px;
+  position: relative;
+}
+.profile-info-container .profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.profile-info-container .profile-info img {
+  position: absolute;
+  top: -85px;
+  left: 28%;
+  width: 45%;
+}
+.profile-info .user-details {
+  align-self: center;
+  text-align: center;
+  color: var(--primary-color);
+  padding: 12px;
+}
+.profile-info-container .profile-info .user-details {
+  font-family: var(--primary-font);
+}
+.profile-info-container .profile-info button {
+  min-width: 130px;
+  padding: 12px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--btn-cancel-color);
+  color: white;
+  align-self: center;
+  margin: 8px;
+}
+@media screen and (min-width: 280px) {
+  .profile-info .user-details {
+    margin-top: 80px;
+  }
+  .profile-info-container .profile-info h2 {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .profile-info-container .profile-info img {
+    top: -85px;
+    left: 35%;
+    width: 28%;
+  }
+  .profile-info .user-details {
+    margin-top: 120px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .profile-info-container .profile-info h2 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,14 @@
+import LogoImg from "../assets/webBazaarLogo.png";
+import MainBanner from "../assets/webBazaarBanner.png";
+import MobileBanner from "../assets/mobileBanner.png";
+import CategoryHeader from "../assets/categoryHeader.png";
+import KidsCardCategory from "../assets/kidsImage (1).jpg";
+import PromoImage from "../assets/coupon.png";
+import EmptyImage from "../assets/emptyCart.png";
+export const LOGO = LogoImg;
+export const MAIN_BANNER = MainBanner;
+export const MOBILE_BANNER = MobileBanner;
+export const CATGEORY_HEADER = CategoryHeader;
+export const KIDS_CARD_CATEGORY = KidsCardCategory;
+export const PROMO_COUPON_IMAGE = PromoImage;
+export const EMPTY_CART_IMAGE = EmptyImage;
