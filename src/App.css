@@ -212,7 +212,7 @@
 .profileContainer {
   display: flex;
   align-self: center;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 20px;
   width: 200px;
   position: relative;
