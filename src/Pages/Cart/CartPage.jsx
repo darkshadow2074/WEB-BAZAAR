@@ -1,7 +1,6 @@
 import { CiDiscount1 } from "react-icons/ci";
 import { BiBookmark } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
-import { useAuth } from "../../Hooks/useAuth";
 import "./CartPage.css";
 import { useData } from "../../context/DataContext";
 import { CartCard } from "./component/CartCard";
@@ -9,7 +8,6 @@ import { CartSideBar } from "./component/CartSideBar";
 import { useNavigate } from "react-router-dom";
 import { EmptyCart } from "./component/EmptyCart";
 export const CartPage = () => {
-  const { currUser } = useAuth();
   const navigate = useNavigate();
   const { data } = useData();
   return data.cart.length > 0 ? (
