@@ -13,7 +13,6 @@ export const initialState = {
   categoryData: [],
   categories: [],
   products: [],
-  productCopy: [],
   cart: [],
   wishList: [],
   addresses: [
