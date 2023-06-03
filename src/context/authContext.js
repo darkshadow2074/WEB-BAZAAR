@@ -4,7 +4,6 @@ import { TOAST_TYPES, Toast_Handler } from "../Utils/Toast/toastConstants";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const localStorageWebBazaarData = localStorage.getItem("loginData");
   const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useState(null);
   const SignupHandler = async ({ first_name, last_name, email, password }) => {
