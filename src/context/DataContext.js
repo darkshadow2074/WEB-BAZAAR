@@ -39,7 +39,7 @@ const DataContextProvider = ({ children }) => {
     } catch (err) {
       console.error(err);
     } finally {
-      return setInterval(() => setIsLoading(false), 2000);
+      return setInterval(() => setIsLoading(false), 1000);
     }
   };
   useEffect(() => {
