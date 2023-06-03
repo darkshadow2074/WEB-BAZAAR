@@ -123,6 +123,21 @@
   border-radius: 6px;
 }
 
+.filter-mobileContainer .category-container.active,
+.filter-mobileContainer .priceRange-container.active,
+.filter-mobileContainer .rating-container.active {
+  display: block;
+}
+.filter-mobileContainer .filter-header.active {
+  display: flex;
+}
+
+.filter-mobileContainer .category-container.none,
+.filter-mobileContainer .priceRange-container.none,
+.filter-mobileContainer .rating-container.none,
+.filter-mobileContainer .filter-header.none {
+  display: none;
+}
 @media screen and (min-width: 1024px) {
   .filter-mobileContainer {
     display: none;

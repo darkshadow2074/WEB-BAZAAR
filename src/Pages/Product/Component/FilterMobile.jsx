@@ -50,13 +50,23 @@ export const FilterMobile = () => {
           </span>
         </div>
       </div>
-      <div className="filter-header">
+      <div
+        className={
+          showMobileFilterNav ? "filter-header active" : "filter-header none"
+        }
+      >
         <span className="filter-header-title">FILTERS</span>
         <button onClick={clearFilterHandler} className="clear-filter">
           Clear All
         </button>
       </div>
-      <div className="category-container">
+      <div
+        className={
+          showMobileFilterNav
+            ? "category-container active"
+            : "category-container none"
+        }
+      >
         <span className="category-header-title">CATEGORIES</span>
         <div className="category-list">
           {data?.categoryData.map((ele) => (
@@ -71,7 +81,13 @@ export const FilterMobile = () => {
           ))}
         </div>
       </div>
-      <div className="priceRange-container">
+      <div
+        className={
+          showMobileFilterNav
+            ? "priceRange-container active"
+            : "priceRange-container none"
+        }
+      >
         <span className="priceRange-header-title">PRICE</span>
         <div className="priceRange-list">
           <div className="price-range">
@@ -90,7 +106,13 @@ export const FilterMobile = () => {
           />
         </div>
       </div>
-      <div className="rating-container">
+      <div
+        className={
+          showMobileFilterNav
+            ? "rating-container active"
+            : "rating-container none"
+        }
+      >
         <span className="rating-header-title">RATINGS</span>
         <div className="rating-list">
           {data?.ratingRange.map((ele) => (
