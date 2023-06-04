@@ -119,13 +119,15 @@ export const Header = () => {
                 <NavLink to="/cart">Bag</NavLink>
                 <NavLink to="/">Contact Us</NavLink>
               </div>
-              <div className="dropdown-footer">
-                <NavLink to="/profile">Edit Profile</NavLink>
-                <NavLink to="/profile">Manage Addresses</NavLink>
-                {token && (
-                  <NavLink onClick={() => LogoutHandler()}>Logout</NavLink>
-                )}
-              </div>
+              {token && (
+                <div className="dropdown-footer">
+                  <NavLink to="/profile">Edit Profile</NavLink>
+                  <NavLink to="/profile">Manage Addresses</NavLink>
+                  {token && (
+                    <NavLink onClick={() => LogoutHandler()}>Logout</NavLink>
+                  )}
+                </div>
+              )}
             </div>
           </div>
           <div className="wishlisht-icon" onClick={() => navigate("/wishlist")}>

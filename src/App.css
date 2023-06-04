@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1.2rem;
+  padding: 1rem 1rem 0 1rem;
   background-color: var(--nav-background);
   box-shadow: var(--nav-boxShadow);
   gap: 10px;
@@ -52,6 +52,7 @@
   font-weight: 600;
   /* width: 180px; */
   align-self: center;
+  margin-bottom: 6px;
 }
 .logo {
   text-decoration: none;
@@ -191,6 +192,7 @@
   width: 350px;
   align-items: center;
   border-radius: 6px;
+  margin-bottom: 6px;
 }
 .searchbar.active {
   background-color: white;
@@ -216,6 +218,7 @@
   gap: 20px;
   width: 200px;
   position: relative;
+  height: 50px;
 }
 .user {
   position: relative;
@@ -325,7 +328,10 @@
   left: 98px;
   transition: width 0.5s;
 }
-
+.dropdown-body a:hover,
+.dropdown-footer a:hover {
+  color: var(--primary-color);
+}
 @media screen and (min-width: 280px) {
   .nav-category-sidebar {
     width: 208%;
@@ -575,6 +581,7 @@
   }
   .nav-category {
     display: flex;
+    margin-bottom: 6px;
   }
   .signup-content {
     display: none;
@@ -617,7 +624,7 @@
     border-bottom: 0px;
   }
   .profile-action-drop-down {
-    top: 58px;
+    top: 50px;
     width: 300px;
     left: -130px;
   }
