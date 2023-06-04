@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import { ACTION_TYPE } from "../Utils/reducerActions/action";
 
 export const dataReducer = (state, action) => {
@@ -101,6 +102,33 @@ export const dataReducer = (state, action) => {
         addresses: state.addresses.filter(
           (address) => address._id !== action.payload
         ),
+      };
+    }
+    case ACTION_TYPE.LOAD_CART_WISHLIST: {
+      return {
+        ...state,
+        cart: [...action?.payload?.cart],
+        wishList: [...action?.payload?.wishlist],
+      };
+    }
+    case ACTION_TYPE.REMOVE_CART_WISHLIST: {
+      return {
+        ...state,
+        cart: [],
+        wishList: [],
+        addresses: [
+          {
+            _id: uuid(),
+            fullName: "Akash Kumar Singh",
+            mobileNumber: "9113610178",
+            pinCode: "231217",
+            country: "India",
+            city: "Renukoot",
+            state: "Uttar Pradesh",
+            address: "Qtr H-393 Hindalco Colony Renukoot Sonebhadra",
+            isDefault: false,
+          },
+        ],
       };
     }
     default:
