@@ -137,10 +137,15 @@
   background-color: white;
   text-decoration: none;
   width: fit-content;
-  border: 1px solid #ff004f;
+  border: 1px solid var(--primary-color);
   padding: 12px 40px;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.5s;
+}
+.card-layers a:hover {
+  background-color: var(--primary-color);
+  color: white;
 }
 .copyright {
   width: 100%;
