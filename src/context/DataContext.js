@@ -47,7 +47,6 @@ const DataContextProvider = ({ children }) => {
     return clearInterval(id);
   }, []);
   const [data, dispatch] = useReducer(dataReducer, initialState);
-
   return (
     <DataContext.Provider value={{ data, dispatch, isLoading }}>
       {children}

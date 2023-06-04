@@ -12,7 +12,7 @@ export const Add_To_Bag = async (params, navigate, data, dispatch) => {
   const findAlreadyExistingData = data.cart.find(
     (item) => item._id === params.product._id
   );
-
+  console.log("find existing data", findAlreadyExistingData);
   try {
     if (!params.encodedToken) {
       navigate("/login");
