@@ -186,37 +186,40 @@ export const SignupPage = () => {
             </label>
             <label for="password">
               <p>Password</p>
-              <input
-                type={showPassword.forNewPassWord ? "text" : "password"}
-                name="Password"
-                id="password"
-                placeholder="Enter Your Password"
-                value={signupDetails.password}
-                onChange={(e) => {
-                  setSignupDetails((prevData) => ({
-                    ...prevData,
-                    password: e.target.value,
-                  }));
-                  if (!validatePassword(e.target.value)) {
-                    setSignupError((prevData) => ({
+              <div className="password-container">
+                <input
+                  type={showPassword.forNewPassWord ? "text" : "password"}
+                  name="Password"
+                  id="password"
+                  placeholder="Enter Your Password"
+                  value={signupDetails.password}
+                  onChange={(e) => {
+                    setSignupDetails((prevData) => ({
                       ...prevData,
-                      password_error:
-                        "Password should have atleast 8 chars and should have one digit",
+                      password: e.target.value,
                     }));
-                  } else {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      password_error: "",
-                    }));
-                  }
-                }}
-              />
-              <span
-                className="btn-show-icon"
-                onClick={() => onShowPasswordHandler("Password")}
-              >
-                {showPassword.forNewPassWord ? <BiHide /> : <BiShow />}
-              </span>
+                    if (!validatePassword(e.target.value)) {
+                      setSignupError((prevData) => ({
+                        ...prevData,
+                        password_error:
+                          "Password should have atleast 8 chars and should have one digit",
+                      }));
+                    } else {
+                      setSignupError((prevData) => ({
+                        ...prevData,
+                        password_error: "",
+                      }));
+                    }
+                  }}
+                />
+                <span
+                  className="btn-show-icon"
+                  onClick={() => onShowPasswordHandler("Password")}
+                >
+                  {showPassword.forNewPassWord ? <BiHide /> : <BiShow />}
+                </span>
+              </div>
+
               <div className="error-section">
                 {(signupDetails.password.length > 0 || signupnClicked) &&
                   signupError.password_error.length > 0 && (
@@ -226,25 +229,28 @@ export const SignupPage = () => {
             </label>
             <label for="confirm-password">
               <p>Confirm Password</p>
-              <input
-                type={showPassword.forConfirmPassword ? "text" : "password"}
-                name="Confirm Password"
-                id="confirm-password"
-                placeholder="Enter Your Password Again"
-                value={signupDetails.confirm_password}
-                onChange={(e) => {
-                  setSignupDetails((prevData) => ({
-                    ...prevData,
-                    confirm_password: e.target.value,
-                  }));
-                }}
-              />
-              <span
-                className="btn-show-icon"
-                onClick={() => onShowPasswordHandler("Confirm Password")}
-              >
-                {showPassword.forConfirmPassword ? <BiHide /> : <BiShow />}
-              </span>
+              <div className="password-container">
+                <input
+                  type={showPassword.forConfirmPassword ? "text" : "password"}
+                  name="Confirm Password"
+                  id="confirm-password"
+                  placeholder="Enter Your Password Again"
+                  value={signupDetails.confirm_password}
+                  onChange={(e) => {
+                    setSignupDetails((prevData) => ({
+                      ...prevData,
+                      confirm_password: e.target.value,
+                    }));
+                  }}
+                />
+                <span
+                  className="btn-show-icon"
+                  onClick={() => onShowPasswordHandler("Confirm Password")}
+                >
+                  {showPassword.forConfirmPassword ? <BiHide /> : <BiShow />}
+                </span>
+              </div>
+
               <div className="error-section">
                 {(signupDetails.confirm_password.length > 0 ||
                   signupnClicked) &&

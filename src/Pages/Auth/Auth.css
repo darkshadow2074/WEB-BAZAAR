@@ -61,7 +61,7 @@
 .input-container label p {
   text-align: left;
 }
-.input-container label input {
+.input-container input {
   padding: 0.5rem;
   font-size: 1rem;
   border-radius: 2px;
@@ -72,7 +72,7 @@
 .input-container label .btn-show-icon {
   position: absolute;
   right: 16px;
-  bottom: 23.5px;
+  bottom: 6.5px;
   color: gray;
   cursor: pointer;
 }
@@ -115,6 +115,13 @@
   padding: 2px;
   color: var(--primary-color);
   text-align: left;
+}
+.password-container {
+  position: relative;
+  width: 100%;
+}
+.password-container input {
+  width: 100%;
 }
 @media screen and (min-width: 768px) {
   .signup-container,
