@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { BiShow, BiHide } from "react-icons/bi";
-import { PROMO_COUPON_IMAGE } from "../../../Utils/assetsImport/constant";
-import "../Auth.css";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
 import {
   validateOnlyString,
   validateEmail,
   validatePassword,
 } from "../../../Utils/validators/validatorFunctions";
+import { PROMO_COUPON_IMAGE } from "../../../Utils/assetsImport/constant";
+import "../Auth.css";
 import { useAuth } from "../../../Hooks/useAuth";
+
 export const SignupPage = () => {
-  const { SignupHandler, token } = useAuth();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [signupnClicked, setSignupnClicked] = useState(false);
   const [signupDetails, setSignupDetails] = useState({
     first_name: "",
     last_name: "",
@@ -32,6 +30,87 @@ export const SignupPage = () => {
     forNewPassWord: false,
     forConfirmPassword: false,
   });
+  const [signupnClicked, setSignupnClicked] = useState(false);
+  const navigate = useNavigate();
+
+  const { SignupHandler, token } = useAuth();
+  const location = useLocation();
+
+  const handleFirstNameInputNameChange = (e) => {
+    setSignupDetails((prevData) => ({
+      ...prevData,
+      first_name: e.target.value,
+    }));
+    if (!validateOnlyString(e.target.value)) {
+      setSignupError((prevData) => ({
+        ...prevData,
+        first_name_error: "First Name should be in strings",
+      }));
+    } else {
+      setSignupError((prevData) => ({
+        ...prevData,
+        first_name_error: "",
+      }));
+    }
+  };
+  const handleSecondNameInputNameChange = (e) => {
+    setSignupDetails((prevData) => ({
+      ...prevData,
+      last_name: e.target.value,
+    }));
+    if (!validateOnlyString(e.target.value)) {
+      setSignupError((prevData) => ({
+        ...prevData,
+        last_name_error: "Last Name should be in strings",
+      }));
+    } else {
+      setSignupError((prevData) => ({
+        ...prevData,
+        last_name_error: "",
+      }));
+    }
+  };
+  const handleEmailInputChange = (e) => {
+    setSignupDetails((prevData) => ({
+      ...prevData,
+      email: e.target.value,
+    }));
+    if (!validateEmail(e.target.value)) {
+      setSignupError((prevData) => ({
+        ...prevData,
+        email_error: "Email should be in correct format",
+      }));
+    } else {
+      setSignupError((prevData) => ({
+        ...prevData,
+        email_error: "",
+      }));
+    }
+  };
+  const handlePasswordInputChange = (e) => {
+    setSignupDetails((prevData) => ({
+      ...prevData,
+      password: e.target.value,
+    }));
+    if (!validatePassword(e.target.value)) {
+      setSignupError((prevData) => ({
+        ...prevData,
+        password_error:
+          "Password should have atleast 8 chars and should have one digit",
+      }));
+    } else {
+      setSignupError((prevData) => ({
+        ...prevData,
+        password_error: "",
+      }));
+    }
+  };
+  const handleConfirmPasswordInputChange = (e) => {
+    setSignupDetails((prevData) => ({
+      ...prevData,
+      confirm_password: e.target.value,
+    }));
+  };
   const onShowPasswordHandler = (target) => {
     if (target === "Password") {
       setShowPasword((prevData) => ({
@@ -55,29 +134,44 @@ export const SignupPage = () => {
       if (signupDetails[ele] === "" && ele !== "confirm_password") {
         newFormError[ele + "_error"] = `${ele} shouldn't be empty`;
         isAnyError = true;
+      } else {
+        isAnyError = false;
       }
       if (signupDetails.password !== signupDetails.confirm_password) {
-        newFormError["confirm-password"] =
+        newFormError["confirm_password_error"] =
           "Password and confirm password didn't matched";
+        isAnyError = true;
+      } else {
+        isAnyError = false;
       }
       if (isAnyError) {
         setSignupError(newFormError);
+      } else {
+        SignupHandler(signupDetails);
+        setSignupDetails({
+          first_name: "",
+          last_name: "",
+          email: "",
+          password: "",
+          confirm_password: "",
+        });
+        setSignupError({
+          first_name_error: "",
+          last_name_error: "",
+          email_error: "",
+          password_error: "",
+          confirm_password_error: "",
+        });
       }
-      SignupHandler(signupDetails);
-      setSignupDetails({
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        confirm_password: "",
-      });
     });
   };
+
   useEffect(() => {
     if (token && navigate) {
       navigate(location?.state?.from?.pathname || "/");
     }
   }, [token, location, navigate]);
+
   return (
     <div className="signup-container">
       <div className="signup-card">
@@ -87,31 +181,16 @@ export const SignupPage = () => {
         <div className="signup-form">
           <h1>Signup</h1>
           <div className="input-container">
-            <label for="first-name">
+            <label>
               <p>First Name</p>
               <input
+                required
                 type="text"
                 name="First-Name"
                 id="first-name"
                 placeholder="John"
                 value={signupDetails.first_name}
-                onChange={(e) => {
-                  setSignupDetails((prevData) => ({
-                    ...prevData,
-                    first_name: e.target.value,
-                  }));
-                  if (!validateOnlyString(e.target.value)) {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      first_name_error: "First Name should be in strings",
-                    }));
-                  } else {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      first_name_error: "",
-                    }));
-                  }
-                }}
+                onChange={handleFirstNameInputNameChange}
               />
               <div className="error-section">
                 {signupError.first_name_error.length > 0 && (
@@ -119,7 +198,7 @@ export const SignupPage = () => {
                 )}
               </div>
             </label>
-            <label for="last-name">
+            <label>
               <p>Last Name</p>
               <input
                 type="text"
@@ -127,23 +206,7 @@ export const SignupPage = () => {
                 id="last-name"
                 placeholder="Doe"
                 value={signupDetails.last_name}
-                onChange={(e) => {
-                  setSignupDetails((prevData) => ({
-                    ...prevData,
-                    last_name: e.target.value,
-                  }));
-                  if (!validateOnlyString(e.target.value)) {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      last_name_error: "Last Name should be in strings",
-                    }));
-                  } else {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      last_name_error: "",
-                    }));
-                  }
-                }}
+                onChange={handleSecondNameInputNameChange}
               />
               <div className="error-section">
                 {signupError.last_name_error.length > 0 && (
@@ -151,31 +214,16 @@ export const SignupPage = () => {
                 )}
               </div>
             </label>
-            <label for="email">
+            <label>
               <p>Email</p>
               <input
+                required
                 type="email"
                 name="Email"
                 id="email"
                 placeholder="abc@webbazaar.com"
                 value={signupDetails.email}
-                onChange={(e) => {
-                  setSignupDetails((prevData) => ({
-                    ...prevData,
-                    email: e.target.value,
-                  }));
-                  if (!validateEmail(e.target.value)) {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      email_error: "Email should be in correct format",
-                    }));
-                  } else {
-                    setSignupError((prevData) => ({
-                      ...prevData,
-                      email_error: "",
-                    }));
-                  }
-                }}
+                onChange={handleEmailInputChange}
               />
               <div className="error-section">
                 {(signupDetails.email.length > 0 || signupnClicked) &&
@@ -184,33 +232,17 @@ export const SignupPage = () => {
                   )}
               </div>
             </label>
-            <label for="password">
+            <label>
               <p>Password</p>
               <div className="password-container">
                 <input
+                  required
                   type={showPassword.forNewPassWord ? "text" : "password"}
                   name="Password"
                   id="password"
                   placeholder="Enter Your Password"
                   value={signupDetails.password}
-                  onChange={(e) => {
-                    setSignupDetails((prevData) => ({
-                      ...prevData,
-                      password: e.target.value,
-                    }));
-                    if (!validatePassword(e.target.value)) {
-                      setSignupError((prevData) => ({
-                        ...prevData,
-                        password_error:
-                          "Password should have atleast 8 chars and should have one digit",
-                      }));
-                    } else {
-                      setSignupError((prevData) => ({
-                        ...prevData,
-                        password_error: "",
-                      }));
-                    }
-                  }}
+                  onChange={handlePasswordInputChange}
                 />
                 <span
                   className="btn-show-icon"
@@ -227,21 +259,17 @@ export const SignupPage = () => {
                   )}
               </div>
             </label>
-            <label for="confirm-password">
+            <label>
               <p>Confirm Password</p>
               <div className="password-container">
                 <input
+                  required
                   type={showPassword.forConfirmPassword ? "text" : "password"}
                   name="Confirm Password"
                   id="confirm-password"
                   placeholder="Enter Your Password Again"
                   value={signupDetails.confirm_password}
-                  onChange={(e) => {
-                    setSignupDetails((prevData) => ({
-                      ...prevData,
-                      confirm_password: e.target.value,
-                    }));
-                  }}
+                  onChange={handleConfirmPasswordInputChange}
                 />
                 <span
                   className="btn-show-icon"
@@ -252,11 +280,10 @@ export const SignupPage = () => {
               </div>
 
               <div className="error-section">
-                {(signupDetails.confirm_password.length > 0 ||
-                  signupnClicked) &&
-                  signupError.confirm_password_error.length > 0 && (
-                    <span>{signupError.password_error}</span>
-                  )}
+                {(signupnClicked ||
+                  signupError.confirm_password_error.length > 0) && (
+                  <span>{signupError.confirm_password_error}</span>
+                )}
               </div>
             </label>
             <button className="signup" onClick={onSignupSubmit}>

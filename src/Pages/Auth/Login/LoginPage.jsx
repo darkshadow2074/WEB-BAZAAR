@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { BiShow, BiHide } from "react-icons/bi";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
 import { PROMO_COUPON_IMAGE } from "../../../Utils/assetsImport/constant";
 import "../Auth.css";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { validateEmail } from "../../../Utils/validators/validatorFunctions";
 import { useAuth } from "../../../Hooks/useAuth";
+
 export const LoginPage = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { LoginHandler, token } = useAuth();
-  const guestLoginCredentials = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
-  };
   const [loginDetails, setLoginDetails] = useState({
     email: "",
     password: "",
@@ -22,6 +17,38 @@ export const LoginPage = () => {
     password_error: "",
   });
   const [showPassword, setShowPasword] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const guestLoginCredentials = {
+    email: "adarshbalika@gmail.com",
+    password: "adarshbalika",
+  };
+  const { LoginHandler, token } = useAuth();
+
+  const handleEmailInputChange = (e) => {
+    setLoginDetails((prevData) => ({
+      ...prevData,
+      email: e.target.value,
+    }));
+    if (!validateEmail(e.target.value)) {
+      setLoginError((prevData) => ({
+        ...prevData,
+        email_error: "Email should be valid",
+      }));
+    } else {
+      setLoginError((prevData) => ({
+        ...prevData,
+        email_error: "",
+      }));
+    }
+  };
+  const handlePasswordInputChange = (e) => {
+    setLoginDetails((prevData) => ({
+      ...prevData,
+      password: e.target.value,
+    }));
+  };
   const onShowPasswordHandler = () => {
     setShowPasword((prevData) => !prevData);
   };
@@ -40,11 +67,11 @@ export const LoginPage = () => {
     if (isAnyError) {
       setLoginError(newError);
     } else {
+      LoginHandler(loginDetails);
       setLoginError({
         email_error: "",
         password_error: "",
       });
-      LoginHandler(loginDetails);
     }
   };
   const handleGuestLogin = () => {
@@ -75,23 +102,7 @@ export const LoginPage = () => {
                 id="email"
                 placeholder="abc@webbazaar.com"
                 value={loginDetails.email}
-                onChange={(e) => {
-                  setLoginDetails((prevData) => ({
-                    ...prevData,
-                    email: e.target.value,
-                  }));
-                  if (!validateEmail(e.target.value)) {
-                    setLoginError((prevData) => ({
-                      ...prevData,
-                      email_error: "Email should be valid",
-                    }));
-                  } else {
-                    setLoginError((prevData) => ({
-                      ...prevData,
-                      email_error: "",
-                    }));
-                  }
-                }}
+                onChange={handleEmailInputChange}
               />
               <div className="error-section">
                 {loginError.email_error.length > 0 && (
@@ -101,22 +112,19 @@ export const LoginPage = () => {
             </label>
             <label>
               <p>Password</p>
-              <input
-                type={showPassword ? "text" : "password"}
-                name="Password"
-                id="password"
-                value={loginDetails.password}
-                placeholder="Enter Your Password"
-                onChange={(e) => {
-                  setLoginDetails((prevData) => ({
-                    ...prevData,
-                    password: e.target.value,
-                  }));
-                }}
-              />
-              <span className="btn-show-icon" onClick={onShowPasswordHandler}>
-                {showPassword ? <BiHide /> : <BiShow />}
-              </span>
+              <div className="password-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="Password"
+                  id="password"
+                  value={loginDetails.password}
+                  placeholder="Enter Your Password"
+                  onChange={handlePasswordInputChange}
+                />
+                <span className="btn-show-icon" onClick={onShowPasswordHandler}>
+                  {showPassword ? <BiHide /> : <BiShow />}
+                </span>
+              </div>
               <div className="error-section">
                 {loginError.password_error.length > 0 && (
                   <span>{loginError.password_error}</span>
