@@ -16,6 +16,7 @@
 .productlist {
   padding: 24px 15px 20px 15px;
   flex: 1 1 0%;
+  font-family: var(--primary-font);
 }
 .product-card-container {
   display: grid;

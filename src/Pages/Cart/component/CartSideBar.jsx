@@ -1,14 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   get_total_discount_price,
   get_total_original_price,
   get_total_price,
 } from "../../../Utils/priceCalculator/priceCalculation";
 import { useData } from "../../../context/DataContext";
+import { ACTION_TYPE } from "../../../Utils/reducerActions/action";
 import "./CartSideBar.css";
+import { useAuth } from "../../../Hooks/useAuth";
+import { Remove_From_Bag } from "../../../Services/cart_wishlist_functionalities";
+
 export const CartSideBar = () => {
   const [couponApplied, setCouponApplied] = useState(false);
-  const { data } = useData();
+  const navigate = useNavigate();
+
+  const { data, dispatch } = useData();
+  const { token } = useAuth();
   const total_original_price = get_total_original_price(data);
   let total_actual_price = get_total_price(data);
   const total_discounted_price = get_total_discount_price(
@@ -17,6 +25,18 @@ export const CartSideBar = () => {
   );
   const handle_coupon_handler = (action) => {
     setCouponApplied((data) => !data);
+  };
+  const handle_order_placed = () => {
+    dispatch({ type: ACTION_TYPE.ADD_ORDER, payload: data.cart });
+    data.cart.forEach((ele) =>
+      Remove_From_Bag(
+        { productId: ele._id, encodedToken: token },
+        navigate,
+        dispatch,
+        true
+      )
+    );
+    navigate("/orders");
   };
   return (
     <div className="cart-page-sidebar">
@@ -73,7 +93,7 @@ export const CartSideBar = () => {
               Placing Order For {data.cart.length} Items
             </div>
             <div className="btn-container">
-              <button>PLACE ORDER</button>
+              <button onClick={handle_order_placed}>PLACE ORDER</button>
             </div>
           </div>
         </div>

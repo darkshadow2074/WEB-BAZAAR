@@ -16,6 +16,7 @@
   flex-direction: column;
   width: 100%;
   gap: 1rem;
+  font-family: var(--primary-font);
   background-color: var(--body-background-color);
 }
 .homepage-container .sale-indicator {
@@ -240,7 +241,7 @@
   .womens-card,
   .kids-card,
   .beauty-card {
-    height: 349px;
+    height: 365px;
   }
 }
 

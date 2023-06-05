@@ -24,6 +24,7 @@
   font-family: var(--primary-font);
   text-align: left;
   padding: 4px 8px 8px 8px;
+  font-family: var(--primary-font);
 }
 .cart-page-sidebar .apply-coupons {
   display: flex;

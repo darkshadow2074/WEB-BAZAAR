@@ -11,12 +11,12 @@
   --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
   --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
   --btn-sectionBoxShadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
-
   --primary-font: "Outfit";
 }
 .product-detail-container {
   width: 100%;
   padding: 24px 15px 20px 15px;
+  font-family: var(--primary-font);
 }
 .product-detail-container .product-details-card {
   position: relative;

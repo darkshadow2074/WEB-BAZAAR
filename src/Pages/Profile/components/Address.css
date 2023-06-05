@@ -18,6 +18,7 @@
   width: 100%;
   margin-top: 12px;
   background-color: var(--body-background-color);
+  font-family: var(--primary-font);
 }
 .address-btn {
   cursor: pointer;
@@ -125,7 +126,7 @@
   border-radius: 4px;
   background-color: var(--nav-background);
   box-shadow: var(--btn-section-boxShadow);
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 .address-data h1 {
   color: var(--primary-color);
@@ -164,6 +165,11 @@
 }
 .address-data .btn-section .edit {
   border-right: 1px solid var(--border-color);
+}
+.error-section {
+  padding: 2px;
+  color: var(--primary-color);
+  text-align: left;
 }
 @media screen and (min-width: 280px) {
   .form-container .basic-info input,

@@ -9,6 +9,7 @@ import { WishlistPage } from "../Pages/Wishlist/WishlistPage";
 import { CartPage } from "../Pages/Cart/CartPage";
 import { RequireAuth } from "./RequiresAuth";
 import { ProfilePage } from "../Pages/Profile/ProfilePage";
+import { Orders } from "../Pages/Orders/Orders";
 
 export const WebBazaarRoutes = () => {
   return (
@@ -38,6 +39,14 @@ export const WebBazaarRoutes = () => {
           element={
             <RequireAuth>
               <ProfilePage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <RequireAuth>
+              <Orders />
             </RequireAuth>
           }
         />

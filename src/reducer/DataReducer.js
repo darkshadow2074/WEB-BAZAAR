@@ -131,6 +131,18 @@ export const dataReducer = (state, action) => {
         ],
       };
     }
+    case ACTION_TYPE.ADD_ORDER: {
+      return {
+        ...state,
+        order: [...action.payload],
+      };
+    }
+    case ACTION_TYPE.SET_ORDER_ADDRESS: {
+      return {
+        ...state,
+        orderAddress: { ...action.payload },
+      };
+    }
     default:
       throw new Error("Error In Reducer");
   }

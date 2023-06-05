@@ -17,6 +17,7 @@
   background-color: var(--box-color);
   height: 160px;
   position: relative;
+  font-family: var(--primary-font);
 }
 .profile-info-container .profile-info {
   display: flex;

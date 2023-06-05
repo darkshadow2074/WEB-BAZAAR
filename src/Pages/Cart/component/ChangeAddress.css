@@ -1,0 +1,106 @@
+:root {
+  --nav-background: #fff;
+  --body-background-color: #f7f7f7;
+  --nav-boxShadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --primary-color: #ff754e;
+  --btn-primary-hover-color: #ff4916;
+  --light-black-color: #7e818c;
+  --modalBox-background-color: #f5f5f6;
+  --primaryLight-color: #ffd4c8;
+  --rating-background-color: hsla(0, 0%, 100%, 0.8);
+  --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
+  --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
+  --card-boxShadow: 0 2px 16px 4px rgba(40, 44, 63, 0.07);
+  --primary-font: "Outfit";
+  --border-color: #edebef;
+  --modal-background-color: rgba(0, 0, 0, 0.6);
+}
+
+.change-address-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-background-color);
+  z-index: 13;
+}
+
+.change-address-box {
+  max-width: 440px;
+  max-height: 65%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--modalBox-background-color);
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: fixed;
+  height: fit-content;
+}
+
+.change-address-box .address-header {
+  padding: 18px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+.change-address-box .address-header h3 {
+  font-size: 16px;
+}
+.change-address-box .address-header span {
+  font-size: 20px;
+  cursor: pointer;
+}
+.change-address-box .address-header span:hover {
+  color: var(--primary-color);
+}
+.address-body label {
+  display: flex;
+  gap: 6px;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--nav-background);
+}
+.change-address-box .address-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.address-body label .address {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-self: flex-start;
+}
+.address-body label .address input {
+  align-self: start;
+  margin-top: 5px;
+}
+.address-body label .address h3,
+.address-body label .address p {
+  text-align: left;
+}
+@media screen and (min-width: 280px) {
+  .change-address-box .address-header {
+    font-size: 1;
+  }
+  .address-body label .address input {
+    font-size: 14px;
+  }
+  .address-body label .address h3,
+  .address-body label .address p {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .change-address-box {
+    top: 0;
+  }
+}

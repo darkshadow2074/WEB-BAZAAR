@@ -25,6 +25,7 @@
   position: relative;
   cursor: pointer;
   border: 1px solid var(--cart-box-border-color);
+  font-family: var(--primary-font);
 }
 .cart-card:hover {
   box-shadow: var(--card-boxShadow);

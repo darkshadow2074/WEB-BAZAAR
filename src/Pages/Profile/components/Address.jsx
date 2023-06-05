@@ -5,6 +5,11 @@ import "./Address.css";
 import { useData } from "../../../context/DataContext";
 import { useState } from "react";
 import { ACTION_TYPE } from "../../../Utils/reducerActions/action";
+import {
+  validateMobile,
+  validateOnlyString,
+  validatePinCode,
+} from "../../../Utils/validators/validatorFunctions";
 export const Address = () => {
   const {
     data: { addresses },
@@ -21,22 +26,152 @@ export const Address = () => {
     address: "",
     isDefault: false,
   });
+  const [addressFieldError, setAddressFieldError] = useState({
+    fullName_error: "",
+    mobileNumber_error: "",
+    pinCode_error: "",
+    country_error: "",
+    city_error: "",
+    state_error: "",
+    address_error: "",
+  });
+
+  const handleFullNameFieldChange = (e) => {
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      fullName: e.target.value,
+    }));
+    if (!validateOnlyString(e.target.value)) {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        fullName_error: "Full Name should be in strings",
+      }));
+    } else {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        fullName_error: "",
+      }));
+    }
+  };
+  const handleMobileNumberFieldChange = (e) => {
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      mobileNumber: e.target.value,
+    }));
+    if (!validateMobile(e.target.value)) {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        mobileNumber_error: "Mobile Number is not valid",
+      }));
+    } else {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        mobileNumber_error: "",
+      }));
+    }
+  };
+  const handlePinCodeFieldChange = (e) => {
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      pinCode: e.target.value,
+    }));
+    if (!validatePinCode(e.target.value)) {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        pinCode_error: "Pincode not valid",
+      }));
+    } else {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        pinCode_error: "",
+      }));
+    }
+  };
+  const handleCountryFieldChange = (e) => {
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      country: e.target.value,
+    }));
+    if (!validateOnlyString(e.target.value)) {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        country_error: "Country should be in strings",
+      }));
+    } else {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        country_error: "",
+      }));
+    }
+  };
+  const handleCityFieldChange = (e) => {
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      city: e.target.value,
+    }));
+    if (!validateOnlyString(e.target.value)) {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        city_error: "City should be in strings",
+      }));
+    } else {
+      setAddressFieldError((prevData) => ({
+        ...prevData,
+        city_error: "",
+      }));
+    }
+  };
+  const handleStateFieldChange = (e) =>
+    e.target.value !== "default" &&
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      state: e.target.value,
+    }));
+  const handleAddressFieldChange = (e) =>
+    setAddressDetails((prevDetails) => ({
+      ...prevDetails,
+      address: e.target.value,
+    }));
+
   const add_address_handler = (address) => {
-    dispatch({
-      type: ACTION_TYPE.ADD_ADDRESS,
-      payload: { _id: uuid(), ...address },
+    let newError = {};
+    let isAnyError = false;
+    Object.keys(addressDetails).forEach((ele) => {
+      newError[ele + "_error"] = "";
+      if (addressDetails[ele] === "" || addressDetails[ele] === "default") {
+        newError[ele + "_error"] = `${ele} shouldn't be empty`;
+        isAnyError = true;
+      }
     });
-    setAddressDetails({
-      fullName: "",
-      mobileNumber: "",
-      pinCode: "",
-      country: "",
-      city: "",
-      state: "default",
-      address: "",
-      isDefault: false,
-    });
-    setShowForm(false);
+    if (isAnyError) {
+      setAddressFieldError(newError);
+    } else {
+      dispatch({
+        type: ACTION_TYPE.ADD_ADDRESS,
+        payload: { _id: uuid(), ...address },
+      });
+
+      setAddressDetails({
+        fullName: "",
+        mobileNumber: "",
+        pinCode: "",
+        country: "",
+        city: "",
+        state: "default",
+        address: "",
+        isDefault: false,
+      });
+      setAddressFieldError({
+        fullName_error: "",
+        mobileNumber_error: "",
+        pinCode_error: "",
+        country_error: "",
+        city_error: "",
+        state_error: "",
+        address_error: "",
+      });
+      setShowForm(false);
+    }
   };
   const edit_address_handler = (address) => {
     setShowForm(true);
@@ -89,8 +224,18 @@ export const Address = () => {
     });
   const cancel_address_field = () => {
     setShowForm(false);
+    setAddressFieldError({
+      fullName_error: "",
+      mobileNumber_error: "",
+      pinCode_error: "",
+      country_error: "",
+      city_error: "",
+      state_error: "",
+      address_error: "",
+    });
     reset_address_field();
   };
+
   return (
     <div className="address-container">
       <div className="address-btn" onClick={() => setShowForm(true)}>
@@ -102,99 +247,95 @@ export const Address = () => {
             <input
               required
               value={addressDetails.fullName}
-              onChange={(e) =>
-                setAddressDetails((prevDetails) => ({
-                  ...prevDetails,
-                  fullName: e.target.value,
-                }))
-              }
+              onChange={handleFullNameFieldChange}
               type="text"
               placeholder="Full Name"
             />
+            <div className="error-section">
+              {addressFieldError.fullName_error.length > 0 && (
+                <span>{addressFieldError.fullName_error}</span>
+              )}
+            </div>
             <input
               required
               value={addressDetails.mobileNumber}
-              onChange={(e) =>
-                setAddressDetails((prevDetails) => ({
-                  ...prevDetails,
-                  mobileNumber: e.target.value,
-                }))
-              }
+              onChange={handleMobileNumberFieldChange}
               type="text"
               placeholder="Mobile Number "
               maxLength="10"
             />
+            <div className="error-section">
+              {addressFieldError.mobileNumber_error.length > 0 && (
+                <span>{addressFieldError.mobileNumber_error}</span>
+              )}
+            </div>
             <input
               required
               value={addressDetails.pinCode}
-              onChange={(e) =>
-                setAddressDetails((prevDetails) => ({
-                  ...prevDetails,
-                  pinCode: e.target.value,
-                }))
-              }
+              onChange={handlePinCodeFieldChange}
               type="text"
               placeholder="Pincode"
               maxLength="6"
             />
+            <div className="error-section">
+              {addressFieldError.pinCode_error.length > 0 && (
+                <span>{addressFieldError.pinCode_error}</span>
+              )}
+            </div>
             <input
               required
               value={addressDetails.country}
-              onChange={(e) =>
-                setAddressDetails((prevDetails) => ({
-                  ...prevDetails,
-                  country: e.target.value,
-                }))
-              }
+              onChange={handleCountryFieldChange}
               type="text"
               placeholder="Country"
             />
+            <div className="error-section">
+              {addressFieldError.country_error.length > 0 && (
+                <span>{addressFieldError.country_error}</span>
+              )}
+            </div>
             <input
               required
               value={addressDetails.city}
-              onChange={(e) =>
-                setAddressDetails((prevDetails) => ({
-                  ...prevDetails,
-                  city: e.target.value,
-                }))
-              }
+              onChange={handleCityFieldChange}
               type="text"
               placeholder="City"
             />
+            <div className="error-section">
+              {addressFieldError.city_error.length > 0 && (
+                <span>{addressFieldError.city_error}</span>
+              )}
+            </div>
             <select
               required
-              onChange={(e) =>
-                e.target.value !== "default" &&
-                setAddressDetails((prevDetails) => ({
-                  ...prevDetails,
-                  state: e.target.value,
-                }))
-              }
+              onChange={handleStateFieldChange}
               className="select-dropdown"
+              value={addressDetails.state}
             >
-              <option value={addressDetails.state}>Choose State</option>
+              <option value="default">Choose State</option>
               {STATES_OF_INDIA.map((ele) => (
-                <option
-                  value={addressDetails.state}
-                  key={uuid()}
-                  className="options"
-                >
+                <option value={ele} key={uuid()} className="options">
                   {ele}
                 </option>
               ))}
             </select>
+            <div className="error-section">
+              {addressFieldError.state_error.length > 0 && (
+                <span>{addressFieldError.state_error}</span>
+              )}
+            </div>
           </div>
           <textarea
-            onChange={(e) =>
-              setAddressDetails((prevDetails) => ({
-                ...prevDetails,
-                address: e.target.value,
-              }))
-            }
+            required
+            onChange={handleAddressFieldChange}
             value={addressDetails.address}
             placeholder="Enter Address"
-            maxLength={30}
           />
+          <div className="error-section">
+            {addressFieldError.address_error.length > 0 && (
+              <span>{addressFieldError.address_error}</span>
+            )}
+          </div>
           <div className="action-btn-section">
             <button
               className="add"

@@ -28,4 +28,16 @@ export const initialState = {
       isDefault: false,
     },
   ],
+  order: [],
+  orderAddress: {
+    _id: uuid(),
+    fullName: "Akash Kumar Singh",
+    mobileNumber: "9113610178",
+    pinCode: "231217",
+    country: "India",
+    city: "Renukoot",
+    state: "Uttar Pradesh",
+    address: "Qtr H-393 Hindalco Colony Renukoot Sonebhadra",
+    isDefault: false,
+  },
 };

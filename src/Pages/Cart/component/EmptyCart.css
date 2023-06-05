@@ -17,6 +17,7 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  font-family: var(--primary-font);
 }
 .bottom-section {
   padding: 0.8rem;

@@ -7,34 +7,46 @@ import { CartCard } from "./component/CartCard";
 import { CartSideBar } from "./component/CartSideBar";
 import { useNavigate } from "react-router-dom";
 import { EmptyCart } from "./component/EmptyCart";
+import { useState } from "react";
+import { ChangeAddress } from "./component/ChangeAddress";
 export const CartPage = () => {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
-  const { data } = useData();
-  return data.cart.length > 0 ? (
+  const {
+    data: {
+      cart,
+      orderAddress: { fullName, pinCode, city, address },
+    },
+  } = useData();
+
+  const handleChangeAddress = () => setShowModal((prevChoice) => !prevChoice);
+  return cart.length > 0 ? (
     <div className="cart-parent">
       <div className="heading-container">
         <h1>SHOPPING BAG</h1>
       </div>
       <div className="cart-page-container">
         <div className="cart-leftside">
-          {/* <div className="address-container">
-       <div className="address-detail">
-         <div className="detail">
-           <span>Deliver to: </span>
-           <span className="user-name">Akash Kumar Singh</span>
-           <span className="user-pincode">231217</span>
-         </div>
-         <div className="user-address">
-           Qtr. H-393 Hindalco Colony Renukoot Sonebhadra
-         </div>
-       </div>
-       <div className="address-change">
-         <button>CHANGE</button>
-       </div>
-     </div> */}
+          <div className="address-container">
+            <div className="address-detail">
+              <div className="detail">
+                <p className="user-name">{fullName}</p>
+                <p className="user-pincode">{pinCode}</p>
+              </div>
+              <div className="user-address">
+                {address} {city}
+              </div>
+            </div>
+            <div className="address-change">
+              <button onClick={handleChangeAddress}>CHANGE</button>
+            </div>
+            {showModal && (
+              <ChangeAddress handleChangeAddress={handleChangeAddress} />
+            )}
+          </div>
           <div className="offers-section">
             <div className="offer-header">
-              <span>
+              <span className="icon">
                 <CiDiscount1 />
               </span>{" "}
               <span>Available Offers</span>
@@ -45,7 +57,7 @@ export const CartPage = () => {
             </div>
           </div>
           <div className="cart-item-container">
-            {data.cart.map((ele) => (
+            {cart.map((ele) => (
               <CartCard key={ele._id} {...ele} />
             ))}
           </div>

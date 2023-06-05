@@ -10,7 +10,7 @@
   --sale-boxShadow: 0 2px 10px 0 rgba(207, 176, 168, 0.57);
   --btn-boxShadow: 0 5px 20px 0 rgba(207, 176, 168, 0.57);
   --btn-section-boxShadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.15);
-  --primary-font: "Outfit";
+  --primary-font: "Assistant,Helvetica,Arial,sans-serif!important";
 }
 
 .profile-page {
@@ -20,6 +20,7 @@
   margin: 20px auto;
   align-items: center;
   justify-content: center;
+  font-family: var(--primary-font);
 }
 
 .profile-page-block {

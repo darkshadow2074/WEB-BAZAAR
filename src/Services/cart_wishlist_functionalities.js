@@ -49,7 +49,8 @@ export const Add_To_Bag = async (params, navigate, data, dispatch) => {
 export const Remove_From_Bag = async (
   { productId, encodedToken },
   navigate,
-  dispatch
+  dispatch,
+  orderPlaced = false
 ) => {
   try {
     if (!encodedToken) {
@@ -61,7 +62,9 @@ export const Remove_From_Bag = async (
       } = await DeleteCartItems({ productId, encodedToken });
       if (status === 200) {
         dispatch({ type: ACTION_TYPE.ADD_TO_CART, payload: cart });
-        Toast_Handler(TOAST_TYPES.Warn, "Item removed from bag");
+        if (orderPlaced === false) {
+          Toast_Handler(TOAST_TYPES.Warn, "Item removed from bag");
+        }
       }
     }
   } catch (err) {
@@ -114,7 +117,7 @@ export const Increment_Decrement_Handler = async (
         } = await DeleteCartItems({ productId, encodedToken });
         if (status === 200) {
           dispatch({ type: ACTION_TYPE.ADD_TO_CART, payload: cart });
-          Toast_Handler(TOAST_TYPES.Info, "Item removed from bag");
+          Toast_Handler(TOAST_TYPES.Warn, "Item removed from bag");
         }
       } else {
         const {

@@ -10,7 +10,7 @@ export const TOAST_TYPES = {
 export const Toast_Handler = (type, message) => {
   if (type === "error") {
     toast.error(message, {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       closeOnClick: true,
       pauseOnHover: true,
@@ -20,7 +20,7 @@ export const Toast_Handler = (type, message) => {
     });
   } else if (type === "warn") {
     toast.warn(message, {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       closeOnClick: true,
       pauseOnHover: true,
@@ -30,7 +30,7 @@ export const Toast_Handler = (type, message) => {
     });
   } else if (type === "success") {
     toast.success(message, {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -41,7 +41,7 @@ export const Toast_Handler = (type, message) => {
     });
   } else if (type === "info") {
     toast.info(message, {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 1000,
       closeOnClick: true,
       pauseOnHover: true,
