@@ -134,19 +134,23 @@ export const SignupPage = () => {
       if (signupDetails[ele] === "" && ele !== "confirm_password") {
         newFormError[ele + "_error"] = `${ele} shouldn't be empty`;
         isAnyError = true;
-      } else {
-        isAnyError = false;
+        console.log("first console", isAnyError);
       }
-      if (signupDetails.password !== signupDetails.confirm_password) {
+      if (
+        signupDetails.password !== "" &&
+        signupDetails.confirm_password !== "" &&
+        signupDetails.password !== signupDetails.confirm_password
+      ) {
         newFormError["confirm_password_error"] =
           "Password and confirm password didn't matched";
         isAnyError = true;
-      } else {
-        isAnyError = false;
+        console.log("second console", isAnyError);
       }
       if (isAnyError) {
+        console.log("fourth console", newFormError);
         setSignupError(newFormError);
       } else {
+        console.log("third console", isAnyError);
         SignupHandler(signupDetails);
         setSignupDetails({
           first_name: "",
@@ -164,6 +168,7 @@ export const SignupPage = () => {
         });
       }
     });
+    console.log("fivth console", isAnyError);
   };
 
   useEffect(() => {
