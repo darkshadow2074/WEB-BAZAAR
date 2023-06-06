@@ -163,16 +163,16 @@ export const HomePage = () => {
       </div>
       <div className="copyright">
         <div className="social-icons">
-          <NavLink to="#">
+          <NavLink to="https://www.linkedin.com/in/akash-kumar-singh-48a624157/">
             <FaLinkedin />
           </NavLink>
-          <NavLink to="#">
+          <NavLink to="https://twitter.com/AkashKu80823217">
             <FaTwitterSquare />
           </NavLink>
-          <NavLink to="#">
+          <NavLink to="https://github.com/darkshadow2074">
             <FaGithub />
           </NavLink>
-          <NavLink to="#">
+          <NavLink to="https://darkshadow.hashnode.dev/">
             <SiHashnode />
           </NavLink>
         </div>
